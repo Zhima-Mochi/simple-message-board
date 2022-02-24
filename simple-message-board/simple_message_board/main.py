@@ -27,7 +27,7 @@ async def shutdown():
     await database.async_engine.dispose()
 
 
-@app.post("/", response_model=models.Post, status_code=status.HTTP_201_CREATED)
+@app.post("/posts", response_model=models.Post, status_code=status.HTTP_201_CREATED)
 async def create_post(post_create: models.PostCreate, session=Depends(get_session)) -> models.Post:
     try:
         new_post = await crud.create_post(session, post_create)
@@ -38,7 +38,7 @@ async def create_post(post_create: models.PostCreate, session=Depends(get_sessio
     return models.Post(**new_post.__dict__)
 
 
-@app.get("/", status_code=status.HTTP_200_OK)
+@app.get("/posts", status_code=status.HTTP_200_OK)
 async def list_posts(session: AsyncSession = Depends(get_session)) -> List[models.Post]:
     posts_list =await crud.get_posts_list(session)
     await session.commit()
