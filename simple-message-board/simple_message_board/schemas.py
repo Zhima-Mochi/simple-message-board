@@ -9,5 +9,7 @@ class Post(Base):
     author = Column(String(30))
     title = Column(String(100))
     content = Column(String(1000))
-    published_date = Column(DateTime(), onupdate=datetime.now, index=True)
+    published_date = Column(DateTime(), default=datetime.now,
+                            onupdate=datetime.now, index=True)
     is_delete = Column(Integer, default=0)
+    __mapper_args__ = {"eager_defaults": True}
