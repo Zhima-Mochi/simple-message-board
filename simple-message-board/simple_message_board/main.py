@@ -2,10 +2,23 @@ from asyncio.log import logger
 from sqlalchemy import select
 from typing import List
 from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from . import models, schemas, database, crud
 from sqlalchemy.ext.asyncio import AsyncSession
 
 app = FastAPI()
+
+origins = {
+    "*"
+}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 async def get_session():
@@ -40,8 +53,7 @@ async def create_post(post_create: models.PostCreate, session=Depends(get_sessio
 
 @app.get("/posts", status_code=status.HTTP_200_OK)
 async def list_posts(session: AsyncSession = Depends(get_session)) -> List[models.Post]:
-    posts_list =await crud.get_posts_list(session)
+    posts_list = await crud.get_posts_list(session)
     await session.commit()
     res = [models.Post(**p.__dict__) for p in posts_list]
     return res
-

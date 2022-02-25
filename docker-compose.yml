@@ -4,7 +4,7 @@ services:
     image: postgres:14.2
     restart: always
     env_file:
-      - .env
+      - .env-example
     environment:
       - POSTGRES_PASSWORD=${database_password:-root}
       - POSTGRES_USER=${database_user:-root}
@@ -20,7 +20,7 @@ services:
     build: simple-message-board/
     restart: always
     env_file:
-      - .env
+      - .env-example
     environment:
       - database_password=${database_password:-root}
       - database_name=${database_name:-simple_message_board}

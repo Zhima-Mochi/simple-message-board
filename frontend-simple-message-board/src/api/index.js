@@ -8,5 +8,21 @@ export async function get_posts() {
     return axios({
         method: 'get',
         url: url.href,
-    }).then(res => res.data).catch(e => console.warn(e));
+    }).then(res => res).catch(e => console.warn(e));
+}
+
+export async function create_post(post) {
+    const url = new URL(base_url);
+    url.pathname = "/posts";
+    const data = {
+        ...post,
+    };
+    return axios({
+        method: 'post',
+        url: url.href,
+        data: data,
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }).then(res => res).catch(e => console.log(e));
 }
