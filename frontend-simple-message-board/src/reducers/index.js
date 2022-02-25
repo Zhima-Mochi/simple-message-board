@@ -6,12 +6,14 @@ import {
 const postsReducer = (state = [], action) => {
     switch (action.type) {
         case actions.GET_POSTS_SUCCESS:
-            return [...state, ...action.payload];
+            return [...action.payload];
         default:
             return state;
     }
 };
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
     postsReducer: postsReducer
 });
+
+export default rootReducer;

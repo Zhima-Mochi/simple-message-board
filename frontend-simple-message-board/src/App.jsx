@@ -2,12 +2,16 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
 import Main from './pages/Main';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<Main/>}></Route>
-    </Routes>
+    <Provider store={store}>
+      <Routes>
+        <Route path='/' element={<Main />}></Route>
+      </Routes>
+    </Provider>
   );
 }
 

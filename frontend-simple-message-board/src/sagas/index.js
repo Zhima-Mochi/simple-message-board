@@ -17,7 +17,8 @@ function* get_posts(action) {
     switch (action.type) {
         case actions.GET_POSTS_BEGIN:
             try {
-                const data = yield call(() => api.get_posts());
+                const response = yield call(() => api.get_posts());
+                const data = response.data;
                 yield put(get_posts_success(data));
             } catch (e) {
                 console.warn(e);
@@ -28,6 +29,10 @@ function* get_posts(action) {
     }
 }
 
+function* postsSaga() {
+    yield takeEvery(actions.GET_POSTS_BEGIN, get_posts);
+}
+
 export default function* rootSaga() {
-    yield all([get_posts()]);
+    yield all([postsSaga()]);
 }
