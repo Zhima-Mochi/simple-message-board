@@ -11,11 +11,11 @@ export async function get_posts() {
     }).then(res => res).catch(e => console.warn(e));
 }
 
-export async function create_post(post) {
+export async function create_post(create_post) {
     const url = new URL(base_url);
     url.pathname = "/posts";
     const data = {
-        ...post,
+        ...create_post,
     };
     return axios({
         method: 'post',

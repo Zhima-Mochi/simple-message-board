@@ -1,6 +1,10 @@
 // CSS reset
 @import-normalize;
 
+* {
+    box-sizing: border-box;
+}
+
 // Tailwind CSS
 @tailwind base;
 @tailwind components;

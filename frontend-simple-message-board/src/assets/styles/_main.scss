@@ -1,0 +1,6 @@
+.post {
+    height: 220px;
+    @include lg-width {
+        height: 200px;
+    }
+}
