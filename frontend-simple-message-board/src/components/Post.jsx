@@ -4,7 +4,7 @@ let post = new DataPost({ title: '測試', author: "王曉明", content: "內容
 
 export default function Post({ data_post }) {
     return (
-        <div className="wrap">
+        <div >
             <div className=" bg-white rounded-sm shadow-md my-4">
                 <div className="post px-8 flex flex-col text-purple-800">
                     <div className="text-2xl my-2">{data_post.title}</div>

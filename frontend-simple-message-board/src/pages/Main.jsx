@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PostsSection from "../components/PostsSection";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as actions from '../actions'
+import CreatePost from "../components/CreatePost";
 
 export default function Main() {
     const dispatch = useDispatch();
@@ -17,8 +19,10 @@ export default function Main() {
             <div className="flex-1 my-4">
                 <PostsSection />
             </div>
-            <div>456</div>
-            <Footer />
+            <div>
+                <CreatePost />
+                <Footer />
+            </div>
         </div>
     )
 }
