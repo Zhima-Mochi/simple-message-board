@@ -8,7 +8,7 @@ export async function get_posts() {
     return axios({
         method: 'get',
         url: url.href,
-    }).then(res => res).catch(e => console.warn(e));
+    }).then(res => res);
 }
 
 export async function create_post(create_post) {
@@ -24,5 +24,7 @@ export async function create_post(create_post) {
         headers:{
             'Content-Type':'application/json'
         }
-    }).then(res => res).catch(e => console.log(e));
+    }).then(res =>{ 
+        return res; 
+    });
 }

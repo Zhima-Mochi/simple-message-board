@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from '../actions'
 
-export default function CreatePost() {
+export default function CreatePostForm() {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -14,6 +14,7 @@ export default function CreatePost() {
     }
 
     const dispatch = useDispatch();
+
 
     return (
         <div className="wrap">
@@ -33,7 +34,13 @@ export default function CreatePost() {
                 </div>
                 <div className="flex justify-center">
                     <div className="mx-4 tracking-widest text-purple-400 cursor-pointer select-none" onClick={() => { resetForm(); }}>清除</div>
-                    <div className="mx-4 tracking-widest text-purple-900 cursor-pointer select-none" onClick={()=>{dispatch();}} >送出</div>
+                    <div className="mx-4 tracking-widest text-purple-900 cursor-pointer select-none" onClick={() => {
+                        if (author === "" || title === "" || content === "") {
+                            alert("欄位不可為空！");
+                        } else {
+                            dispatch(actions.create_post_begin(title, author, content));
+                        }
+                    }} >送出</div>
                 </div>
             </div>
         </div>

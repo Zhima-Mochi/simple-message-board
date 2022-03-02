@@ -4,10 +4,10 @@ from typing import Optional
 
 
 class PostBase(BaseModel):
-    title: str = Field(..., max_length=50, example="Important")
-    content: str = Field(..., max_length=500,
+    title: str = Field(..., min_length=1, max_length=50, example="Important")
+    content: str = Field(..., min_length=1, max_length=500,
                          example="I want to announce something, please come to my office.")
-    author: str = Field(..., max_length=10, example="teacher")
+    author: str = Field(..., min_length=1, max_length=10, example="teacher")
 
 
 class PostCreate(PostBase):

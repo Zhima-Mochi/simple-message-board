@@ -5,7 +5,7 @@ import PostsSection from "../components/PostsSection";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as actions from '../actions'
-import CreatePost from "../components/CreatePost";
+import CreatePostForm from "../components/CreatePostForm";
 
 export default function Main() {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function Main() {
                 <PostsSection />
             </div>
             <div>
-                <CreatePost />
+                <CreatePostForm />
                 <Footer />
             </div>
         </div>
