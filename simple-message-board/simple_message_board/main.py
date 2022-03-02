@@ -55,5 +55,8 @@ async def create_post(post_create: models.PostCreate, session=Depends(get_sessio
 async def list_posts(session: AsyncSession = Depends(get_session)) -> List[models.Post]:
     posts_list = await crud.get_posts_list(session)
     await session.commit()
+    for p in posts_list:
+        print(p)
+        break
     res = [models.Post(**p.__dict__) for p in posts_list]
     return res
