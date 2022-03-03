@@ -2,6 +2,9 @@ import * as actions from '../actions';
 import {
     combineReducers
 } from 'redux';
+import {
+    DataPost
+} from '../constants';
 
 const postsReducer = (state = [], action) => {
     switch (action.type) {
@@ -15,7 +18,7 @@ const postsReducer = (state = [], action) => {
     }
 };
 
-const responseReducer = (state = {}, action) => {
+const responsesReducer = (state = new DataPost({}), action) => {
     switch (action.type) {
         case actions.GET_POST_WITH_RESPONSES_SUCCESS:
             return action.payload;
@@ -29,7 +32,7 @@ const responseReducer = (state = {}, action) => {
 
 const rootReducer = combineReducers({
     postsReducer: postsReducer,
-    responseReducer:responseReducer
+    responsesReducer: responsesReducer
 });
 
 export default rootReducer;

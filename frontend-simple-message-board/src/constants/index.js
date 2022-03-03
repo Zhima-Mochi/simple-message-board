@@ -21,7 +21,7 @@ export class BaseResponse {
     }
 }
 
-export class CreateResponse extends BaseResponse{
+export class CreateResponse extends BaseResponse {
     constructor(obj) {
         super(obj);
     }
@@ -31,11 +31,23 @@ export class DataPost extends BasePost {
     constructor(obj) {
         super(obj);
         this.id = obj.id;
-        this.published_date = new Date(obj.published_date);
+        this.published_date = obj.published_date && new Date(obj.published_date);
         this.responses_num = obj.responses_num
-        this.reponses_list = obj.reponses_list
+        this.responses_num = obj.responses ? obj.responses.length : this.responses_num;
+        this.responses_list = (obj.responses && obj.responses.map(elem => new DataResponse(elem))) || []
     }
     getFormatPublishedDate() {
         return dateFormat(this.published_date, "yyyy-mm-dd HH:MM:ss")
+    }
+}
+
+export class DataResponse extends BaseResponse {
+    constructor(obj) {
+        super(obj);
+        this.id = obj.id;
+        this.response_date = new Date(obj.response_date);
+    }
+    getFormatResonseDate() {
+        return dateFormat(this.response_date, "yyyy-mm-dd HH:MM:ss")
     }
 }
