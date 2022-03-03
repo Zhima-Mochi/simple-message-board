@@ -30,7 +30,7 @@ export default function CreatePostForm() {
                 </div>
                 <div className="flex my-2">
                     <div>內容：</div>
-                    <textarea className="flex-1 border-2 border-gray-200 px-2 h-96 resize-none" value={content} onChange={(e) => { setContent(e.target.value) }} ></textarea>
+                    <textarea className="flex-1 border-2 border-gray-200 px-2 h-48 lg:h-96 resize-none" value={content} onChange={(e) => { setContent(e.target.value) }} ></textarea>
                 </div>
                 <div className="flex justify-center">
                     <div className="mx-4 tracking-widest text-purple-400 cursor-pointer select-none" onClick={() => { resetForm(); }}>清除</div>

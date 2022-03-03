@@ -55,8 +55,25 @@ async def create_post(post_create: models.PostCreate, session=Depends(get_sessio
 async def list_posts(session: AsyncSession = Depends(get_session)) -> List[models.Post]:
     posts_list = await crud.get_posts_list(session)
     await session.commit()
-    for p in posts_list:
-        print(p)
-        break
-    res = [models.Post(**p.__dict__) for p in posts_list]
+    res = [models.PostWithRspNum(**p.__dict__) for p in posts_list]
     return res
+
+
+@app.get("/responses/{post_id}", status_code=status.HTTP_200_OK, response_model=models.PostWithResponse)
+async def get_post_responses(post_id: int, session: AsyncSession = Depends(get_session)):
+    post = await crud.get_post_with_responses(session, post_id)
+    post = post.__dict__
+    responses = [ rsp.__dict__ for rsp in post['responses']]
+    post['responses']=responses
+    return post
+
+
+@app.post("/responses/{post_id}", status_code=status.HTTP_200_OK)
+async def create_post_response(post_id: int, response: models.ResponseCreate, session: AsyncSession = Depends(get_session)):
+    try:
+        new_response = await crud.create_response(session, response)
+    except Exception as e:
+        logger.error(e)
+        raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE)
+    await session.commit()
+    return models.Response(**new_response.__dict__)
