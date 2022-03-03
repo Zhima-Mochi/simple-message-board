@@ -4,7 +4,7 @@ export default function Post({ data_post }) {
     return (
         <div className=" bg-white rounded-sm shadow-md my-4">
             <div className="post px-8 flex flex-col text-purple-800">
-                <div className="text-2xl my-2">{data_post.title}</div>
+                <div className="text-2xl my-2 font-semibold">{data_post.title}</div>
                 <div className="flex flex-col sm:flex-row text-xs  justify-between">
                     <div className="mb-2">作者：{data_post.author}</div>
                     <div className="mb-2">發佈時間：{data_post.getFormatPublishedDate()}</div>
