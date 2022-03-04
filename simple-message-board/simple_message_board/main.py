@@ -2,6 +2,7 @@ from asyncio.log import logger
 from sqlalchemy import select
 from typing import List
 from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from . import models, schemas, database, crud
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -62,9 +63,11 @@ async def list_posts(session: AsyncSession = Depends(get_session)) -> List[model
 @app.get("/responses/{post_id}", status_code=status.HTTP_200_OK, response_model=models.PostWithResponse)
 async def get_post_responses(post_id: int, session: AsyncSession = Depends(get_session)):
     post = await crud.get_post_with_responses(session, post_id)
+    if post is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     post = post.__dict__
-    responses = [ rsp.__dict__ for rsp in post['responses']]
-    post['responses']=responses
+    responses = [rsp.__dict__ for rsp in post['responses']]
+    post['responses'] = responses
     return post
 
 

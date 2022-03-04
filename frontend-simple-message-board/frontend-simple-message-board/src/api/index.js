@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const base_url = new URL("http://localhost:8080");
+const base_url = new URL(process.env.REACT_APP_API_HOST || "http://localhost:8080");
 
 export async function get_posts() {
     const url = new URL(base_url);
@@ -42,7 +42,7 @@ export async function create_response(create_response) {
     const url = new URL(base_url);
     url.pathname = `/responses/${create_response.post_id}`;
     const data = {
-        ...create_post,
+        ...create_response,
     };
     return axios({
         method: 'post',

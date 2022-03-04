@@ -23,8 +23,8 @@ const responsesReducer = (state = new DataPost({}), action) => {
         case actions.GET_POST_WITH_RESPONSES_SUCCESS:
             return action.payload;
         case actions.CREATE_RESPONSE_SUCCESS:
-            window.location.href = `/responses/${action.payload.id}`;
-            return;
+            window.location.href = `/posts/${action.payload.post_id}`;
+            return state;
         default:
             return state;
     }

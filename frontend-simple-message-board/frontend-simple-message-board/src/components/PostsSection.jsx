@@ -31,9 +31,9 @@ export default function PostsSection() {
         );
     }
     return (
-        <div className="wrap">
+        <div className="">
             {create_pagination()}
-            {posts.slice(10 * (page - 1), 10 * (page - 1) + 10).map(data_post => <Link to={`/posts/${data_post.id}`}><Post key={data_post.id} data_post={new DataPost(data_post)} /></Link>)}
+            {posts.slice(10 * (page - 1), 10 * (page - 1) + 10).map(data_post => <Link key={data_post.id} to={`/posts/${data_post.id}`}><Post data_post={new DataPost(data_post)} /></Link>)}
             {create_pagination()}
         </div>
     );

@@ -66,6 +66,7 @@ function* create_response(action) {
     switch (action.type) {
         case actions.CREATE_RESPONSE_BEGIN:
             try {
+                console.log(action.payload)
                 const response = yield call(() => api.create_response(action.payload));
                 const data = response.data;
                 yield put(create_response_success(data));

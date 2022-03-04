@@ -17,10 +17,14 @@ export default function Main() {
         <div className="flex flex-col justify-between min-h-screen bg-purple-50">
             <Header />
             <div className="flex-1 my-4">
-                <PostsSection />
+                <div className="wrap">
+                    <PostsSection />
+                </div>
             </div>
             <div>
-                <CreatePostForm />
+                <div className="wrap">
+                    <CreatePostForm />
+                </div>
                 <Footer />
             </div>
         </div>

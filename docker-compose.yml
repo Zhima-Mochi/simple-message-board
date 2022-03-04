@@ -32,6 +32,18 @@ services:
     networks:
       - local-networks
 
+  nginx-frontend-server:
+    build: frontend-simple-message-board/
+    restart: always
+    env_file:
+      - .env-example
+    environment:
+      - REACT_APP_API_HOST=app
+    ports:
+      - 80:80
+    networks:
+      - local-networks
+
 networks:
   local-networks:
     driver: bridge

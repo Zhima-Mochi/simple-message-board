@@ -1,0 +1,21 @@
+FROM node:17.6.0 as builder
+
+WORKDIR /frontend
+
+COPY frontend-simple-message-board/package.json frontend-simple-message-board/package-lock.json /frontend/
+
+RUN npm install
+
+COPY frontend-simple-message-board/ /frontend/
+
+RUN npm run build
+
+FROM nginx:1.21.6
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=builder /frontend/build .
+
+COPY nginx.conf /etc/nginx/nginx.conf
