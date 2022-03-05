@@ -11,6 +11,7 @@ export default function PostResponse() {
     useEffect(() => {
         dispatch(actions.get_post_with_responses(post_id));
     }, [dispatch, post_id]);
+    useEffect(() => { window.scrollTo(0, 0) }, [])
     return (<div className="flex flex-col justify-between min-h-screen bg-purple-50">
         <Header />
         <div className="flex-1 my-4">

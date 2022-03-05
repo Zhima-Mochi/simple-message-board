@@ -19,6 +19,8 @@ services:
   app:
     build: simple-message-board/
     restart: always
+    depends_on: 
+      - db
     env_file:
       - .env-example
     environment:
@@ -35,6 +37,8 @@ services:
   nginx-frontend-server:
     build: frontend-simple-message-board/
     restart: always
+    depends_on: 
+      - app
     env_file:
       - .env-example
     environment:

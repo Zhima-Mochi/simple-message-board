@@ -10,6 +10,15 @@ import Response from "./Response";
 export default function ResponsesSection() {
     const post_with_responses_data = new DataPost(useSelector(state => state.responsesReducer));
     const responses_data = post_with_responses_data.responses_list;
+    if(post_with_responses_data.id === undefined){
+        return (
+            <div className="wrap">
+            <div className="mt-12 text-purple-700 text-center tracking-widest">
+                無此主題
+            </div>
+        </div>
+        );
+    }
     return (
         <div className="wrap">
             <Post data_post={post_with_responses_data} />
