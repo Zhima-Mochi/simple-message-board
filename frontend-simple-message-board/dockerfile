@@ -8,7 +8,11 @@ RUN npm install
 
 COPY frontend-simple-message-board/ /frontend/
 
-RUN npm run build
+ARG REACT_APP_API
+
+ENV REACT_APP_API $REACT_APP_API
+
+RUN npm run public-build
 
 FROM nginx:1.21.6
 

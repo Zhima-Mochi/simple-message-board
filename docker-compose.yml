@@ -19,7 +19,7 @@ services:
   app:
     build: simple-message-board/
     restart: always
-    depends_on: 
+    depends_on:
       - db
     env_file:
       - .env-example
@@ -35,14 +35,15 @@ services:
       - local-networks
 
   nginx-frontend-server:
-    build: frontend-simple-message-board/
+    build:
+      context: frontend-simple-message-board/
+      args:
+        - REACT_APP_API=/api/v1
     restart: always
-    depends_on: 
+    depends_on:
       - app
     env_file:
       - .env-example
-    environment:
-      - REACT_APP_API_HOST=app
     ports:
       - 80:80
     networks:

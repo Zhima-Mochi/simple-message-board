@@ -1,34 +1,35 @@
 import axios from "axios";
 
-const base_url = new URL(process.env.REACT_APP_API_HOST || "http://localhost:8080");
+const base_url = new URL("http://localhost/");
+base_url.pathname = process.env.REACT_APP_API;
 
 export async function get_posts() {
     const url = new URL(base_url);
-    url.pathname = "/posts";
+    url.pathname += "/posts";
     return axios({
         method: 'get',
-        url: url.href,
+        url: url.pathname + url.search,
     }).then(res => res);
 }
 
 export async function get_responses(post_id) {
     const url = new URL(base_url);
-    url.pathname = `/responses/${post_id}`;
+    url.pathname += `/responses/${post_id}`;
     return axios({
         method: 'get',
-        url: url.href,
+        url: url.pathname + url.search,
     }).then(res => res);
 }
 
 export async function create_post(create_post) {
     const url = new URL(base_url);
-    url.pathname = "/posts";
+    url.pathname += "/posts";
     const data = {
         ...create_post,
     };
     return axios({
         method: 'post',
-        url: url.href,
+        url: url.pathname + url.search,
         data: data,
         headers: {
             'Content-Type': 'application/json'
@@ -40,13 +41,13 @@ export async function create_post(create_post) {
 
 export async function create_response(create_response) {
     const url = new URL(base_url);
-    url.pathname = `/responses/${create_response.post_id}`;
+    url.pathname += `/responses/${create_response.post_id}`;
     const data = {
         ...create_response,
     };
     return axios({
         method: 'post',
-        url: url.href,
+        url: url.pathname + url.search,
         data: data,
         headers: {
             'Content-Type': 'application/json'
