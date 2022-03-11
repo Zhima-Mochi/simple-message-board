@@ -24,3 +24,7 @@ This application is simple message board, which everyone can post something and 
 docker-compose up
 ```
 
+## Demo
+![demo](demo/demo1.png)
+![demo](demo/demo2.png)
+![demo](demo/demo3.png)
