@@ -15,9 +15,9 @@ export default function PostsSection() {
     useEffect(() => { setPage(+searchParams.get('p') || 1) }, [searchParams]);
     useEffect(() => { setPostNum(posts.length) }, [posts]);
     useEffect(() => { if (postNum !== 0 && Math.ceil(postNum / 10) < page) { navigate('/posts') } }, [postNum, page, navigate])
-    if(postNum==0){
-        return ( <div className="text-purple-700 font-bold mt-4 tracking-widest text-center">
-            尚無主題
+    if(postNum===0){
+        return ( <div className="text-gray-400 font-bold mt-4 text-center">
+            There is no post.
         </div>);
     }
     function create_pagination() {

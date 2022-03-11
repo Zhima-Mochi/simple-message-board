@@ -4,7 +4,7 @@ export default function Response({data}) {
             <div className="px-8 flex flex-col text-purple-800">
                 <div className="flex flex-col mt-4 sm:flex-row text-xs  justify-between">
                     <div className="mb-2 text-base font-semibold">{data.author}</div>
-                    <div className="mb-2 font-thin">時間：{data.getFormatResonseDate()}</div>
+                    <div className="mb-2 font-thin">Time: {data.getFormatResonseDate()}</div>
                 </div>
                 <div className="mb-4 text-sm rounded-sm">
                     {data.message}

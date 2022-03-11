@@ -14,7 +14,8 @@ export async function get_posts() {
 
 export async function get_responses(post_id) {
     const url = new URL(base_url);
-    url.pathname += `/responses/${post_id}`;
+    url.pathname += `/responses`;
+    url.searchParams.set('post_id', post_id);
     return axios({
         method: 'get',
         url: url.pathname + url.search,
@@ -41,7 +42,7 @@ export async function create_post(create_post) {
 
 export async function create_response(create_response) {
     const url = new URL(base_url);
-    url.pathname += `/responses/${create_response.post_id}`;
+    url.pathname += `/responses`;
     const data = {
         ...create_response,
     };

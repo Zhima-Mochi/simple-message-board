@@ -19,28 +19,28 @@ export default function CreatePostForm() {
     return (
         <div className="">
             <div className=" bg-white mb-4 rounded-sm shadow-md flex flex-col text-purple-700 px-8 py-2">
-                <h1 className=" text-xl text-center tracking-widest font-semibold">張貼主題</h1>
-                <div className="flex my-2">
-                    <div>作者：</div>
+                <h1 className=" text-xl text-center  font-semibold">Create Your Post</h1>
+                <div className="flex my-2 xs:flex-col">
+                    <div className="w-24">Your Name:</div>
                     <input className="flex-1 border-2 border-gray-200 px-2" placeholder="" value={author} onChange={(e) => { setAuthor(e.target.value) }} ></input>
                 </div>
-                <div className="flex my-2">
-                    <div>標題：</div>
+                <div className="flex my-2 xs:flex-col">
+                    <div className="w-24">Title:</div>
                     <input className="flex-1 border-2 border-gray-200 px-2" placeholder="" value={title} onChange={(e) => { setTitle(e.target.value) }}></input>
                 </div>
-                <div className="flex my-2">
-                    <div>內容：</div>
+                <div className="flex my-2 xs:flex-col">
+                    <div className="w-24">Content:</div>
                     <textarea className="flex-1 border-2 border-gray-200 px-2 h-48 lg:h-96 resize-none" value={content} onChange={(e) => { setContent(e.target.value) }} ></textarea>
                 </div>
-                <div className="flex justify-center">
-                    <div className="mx-4 tracking-widest text-purple-400 cursor-pointer select-none" onClick={() => { resetForm(); }}>清除</div>
-                    <div className="mx-4 tracking-widest text-purple-900 cursor-pointer select-none" onClick={() => {
+                <div className="flex justify-center font-semibold">
+                    <div className="mx-4  text-purple-400 cursor-pointer select-none" onClick={() => { resetForm(); }}>Clear</div>
+                    <div className="mx-4  text-purple-900 cursor-pointer select-none" onClick={() => {
                         if (author === "" || title === "" || content === "") {
-                            alert("欄位不可為空！");
+                            alert("Blank is not allowable！");
                         } else {
                             dispatch(actions.create_post_begin(title, author, content));
                         }
-                    }} >送出</div>
+                    }} >Submit</div>
                 </div>
             </div>
         </div>

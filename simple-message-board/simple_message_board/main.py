@@ -60,7 +60,7 @@ async def list_posts(session: AsyncSession = Depends(get_session)) -> List[model
     return res
 
 
-@app.get("/responses/{post_id}", status_code=status.HTTP_200_OK, response_model=models.PostWithResponse)
+@app.get("/responses", status_code=status.HTTP_200_OK, response_model=models.PostWithResponse)
 async def get_post_responses(post_id: int, session: AsyncSession = Depends(get_session)):
     post = await crud.get_post_with_responses(session, post_id)
     if post is None:
@@ -71,8 +71,8 @@ async def get_post_responses(post_id: int, session: AsyncSession = Depends(get_s
     return post
 
 
-@app.post("/responses/{post_id}", status_code=status.HTTP_200_OK)
-async def create_post_response(post_id: int, response: models.ResponseCreate, session: AsyncSession = Depends(get_session)):
+@app.post("/responses", status_code=status.HTTP_200_OK)
+async def create_post_response(response: models.ResponseCreate, session: AsyncSession = Depends(get_session)):
     try:
         new_response = await crud.create_response(session, response)
     except Exception as e:

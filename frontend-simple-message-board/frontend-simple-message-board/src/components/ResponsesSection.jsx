@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { useSelector } from "react-redux";
 import { DataPost } from "../constants";
 import CreateResponseForm from "./CreateResponseForm";
@@ -13,8 +12,8 @@ export default function ResponsesSection() {
     if(post_with_responses_data.id === undefined){
         return (
             <div className="wrap">
-            <div className="mt-12 text-purple-700 text-center tracking-widest">
-                無此主題
+            <div className="mt-12 text-purple-700 text-center">
+                Post is not found!
             </div>
         </div>
         );
@@ -25,7 +24,7 @@ export default function ResponsesSection() {
             <div className="flex bg-purple-100 rounded-md flex-col  text-purple-700 shadow-sm mb-4">
                 <div className="mx-8 my-2">
                     {responses_data.map(elem => <Response key={elem.id} data={elem} />)}
-                    {responses_data.length === 0 && <div className="h-20 pt-6 text-center tracking-widest"> 尚無留言</div>}
+                    {responses_data.length === 0 && <div className="h-20 pt-6 text-center text-gray-400">There is no response.</div>}
                 </div>
             </div>
             <CreateResponseForm post_id={post_with_responses_data.id} />
