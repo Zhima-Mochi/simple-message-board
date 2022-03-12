@@ -3,6 +3,10 @@
 ## Overview
 This application is simple message board, which everyone can post something and response to any post. However, there is no access authentication and recaptcha scheme, do not use to release.
 
+## Architecture
+
+![architecture](architecture/architecture.png)
+
 ## Technology Stack
 ### Infrastructure
 * PostgreSQL
