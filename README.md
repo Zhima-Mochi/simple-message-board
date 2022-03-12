@@ -6,6 +6,7 @@ This application is simple message board, which everyone can post something and 
 ## Architecture
 
 ![architecture](architecture/architecture.png)
+> They are different containers in Docker compose.
 
 ## Technology Stack
 ### Infrastructure
